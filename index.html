@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="#about" class="logo gradient-text" id="logo-name"></a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#competencies">Competencies</a></li>
+          <li><a href="#highlights">Highlights</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#education-awards">Education &amp; Awards</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="about" class="section about-section">
+      <div class="container">
+
+        <div class="about-grid">
+          <div class="about-left">
+            <div class="avatar">
+              <img src="assets/profile.jpg" alt="Portrait of Thanh Kieu Le" class="avatar-img">
+            </div>
+            <h1 id="hero-name"></h1>
+            <div class="about-contact" id="about-contact"></div>
+          </div>
+          <div class="about-right">
+            <p class="hero-headline gradient-text" id="hero-headline"></p>
+            <p class="subtitle" id="hero-tagline"></p>
+            <h3 class="summary-label">Professional Summary</h3>
+            <p class="about-summary" id="about-summary"></p>
+          </div>
+        </div>
+
+        <div class="competencies-block" id="competencies">
+          <h3 class="block-heading">Core Competencies</h3>
+          <div class="competency-bars" id="competencies-grid"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="highlights" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Highlights</h2>
+        <div class="highlight-list" id="projects-list"></div>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline" id="experience-list"></div>
+      </div>
+    </section>
+
+    <section id="education-awards" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Education &amp; Awards</h2>
+        <div class="education-wrapper">
+          <div class="education-col">
+            <h3 class="block-heading">Education</h3>
+            <div class="timeline" id="education-list"></div>
+            <div class="cert-groups" id="certifications-list"></div>
+          </div>
+          <div class="awards-col">
+            <h3 class="block-heading">Awards &amp; Recognition</h3>
+            <ul class="awards-list" id="awards-list"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p id="footer-text"></p>
+    </div>
+  </footer>
+
+  <script src="content/content.js"></script>
+  <script src="js/render.js"></script>
+</body>
+</html>
