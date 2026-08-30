@@ -6,10 +6,16 @@
   <title>Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <div class="bg-fx" aria-hidden="true">
+    <div class="bg-glow bg-glow--cyan"></div>
+    <div class="bg-glow bg-glow--violet"></div>
+    <div class="bg-grid"></div>
+  </div>
 
   <header class="navbar">
     <div class="container navbar-inner">
@@ -31,10 +37,14 @@
     <section id="about" class="section about-section">
       <div class="container">
 
+        <p class="section-tag">// 01 — about.me</p>
+
         <div class="about-grid">
           <div class="about-left">
             <div class="avatar">
-              <img src="assets/profile.jpg" alt="Portrait of Thanh Kieu Le" class="avatar-img">
+              <div class="avatar-frame">
+                <img src="assets/profile.jpg" alt="Portrait of Thanh Kieu Le" class="avatar-img">
+              </div>
             </div>
             <h1 id="hero-name"></h1>
             <div class="about-contact" id="about-contact"></div>
@@ -42,7 +52,7 @@
           <div class="about-right">
             <p class="hero-headline gradient-text" id="hero-headline"></p>
             <p class="subtitle" id="hero-tagline"></p>
-            <h3 class="summary-label">Professional Summary</h3>
+            <h3 class="summary-label">// professional_summary</h3>
             <p class="about-summary" id="about-summary"></p>
           </div>
         </div>
@@ -57,6 +67,7 @@
 
     <section id="highlights" class="section section-alt">
       <div class="container">
+        <p class="section-tag">// 02 — case_studies</p>
         <h2 class="section-title">Highlights</h2>
         <div class="highlight-list" id="projects-list"></div>
       </div>
@@ -64,6 +75,7 @@
 
     <section id="experience" class="section">
       <div class="container">
+        <p class="section-tag">// 03 — work_history</p>
         <h2 class="section-title">Experience</h2>
         <div class="timeline" id="experience-list"></div>
       </div>
@@ -71,16 +83,22 @@
 
     <section id="education-awards" class="section section-alt">
       <div class="container">
+        <p class="section-tag">// 04 — background</p>
         <h2 class="section-title">Education &amp; Awards</h2>
         <div class="education-wrapper">
           <div class="education-col">
             <h3 class="block-heading">Education</h3>
             <div class="timeline" id="education-list"></div>
-            <div class="cert-groups" id="certifications-list"></div>
-          </div>
-          <div class="awards-col">
-            <h3 class="block-heading">Awards &amp; Recognition</h3>
+
+            <h3 class="block-heading awards-heading">Awards &amp; Recognition</h3>
             <ul class="awards-list" id="awards-list"></ul>
+          </div>
+          <div class="cert-col">
+            <h3 class="block-heading">Certifications</h3>
+            <div class="cert-groups" id="certifications-list"></div>
+            <a href="#" id="cert-link-btn" class="cert-link-btn" target="_blank" rel="noopener">
+              View Certificate Images &rarr;
+            </a>
           </div>
         </div>
       </div>

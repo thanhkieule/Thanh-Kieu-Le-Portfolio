@@ -55,16 +55,22 @@ const PORTFOLIO_CONTENT = {
   ],
 
   // Flagship projects worth a full case study.
-  // Each project is told in 3 versions: the old/baseline way of doing it, the version
-  // Kieu actually built (factual, from her real experience), and a forward-looking version
-  // of what could be built now with today's more capable AI. This is what makes the
-  // portfolio different from a resume, and shows AI-era thinking, not just AI skills.
+  // Each project is told in versions: the old/baseline way of doing it (or the
+  // problem the organization needed to solve), the version Kieu actually built
+  // (factual, from her real experience), and — for most projects — a forward-looking
+  // version of what could be built now with today's more capable AI. This is what
+  // makes the portfolio different from a resume, and shows AI-era thinking, not
+  // just AI skills. The AI-Powered Personalized Learning Platform skips the
+  // "what's next" version since it's Kieu's own active, ongoing venture.
   //
-  // NOTE: "oldVersion" (baseline/before-state details) and every "aiPoweredVersion" are
-  // illustrative/hypothetical by design (per Kieu's instruction to assume placeholder
-  // detail where the real historical baseline or future plan isn't documented).
-  // "improvedVersion" is factual and matches the resume. Replace any illustrative detail
-  // with real specifics whenever Kieu has them.
+  // "beforeDetails" (optional): a few concrete bullet points under oldVersion for
+  // projects where that extra detail is worth showing instead of an image.
+  //
+  // NOTE: "oldVersion"/"beforeDetails" (baseline/before-state details) and every
+  // "aiPoweredVersion" are illustrative/hypothetical by design (per Kieu's
+  // instruction to assume placeholder detail where the real historical baseline or
+  // future plan isn't documented). "improvedVersion" is factual and matches the
+  // resume. Replace any illustrative detail with real specifics whenever Kieu has them.
   projects: [
     {
       name: "Performance Management Program (incl. Perform Mate AI Agent)",
@@ -73,6 +79,11 @@ const PORTFOLIO_CONTENT = {
       tags: ["Performance Management", "AI Agent", "Change Management"],
       oldVersion:
         "Performance reviews ran on a generic, mostly annual cycle: the same goal-setting template for every role level, manual check-ins between managers and employees, and no real-time support when someone had a question about their goals or progress.",
+      beforeDetails: [
+        "Built on a shared Google Sheet template that every manager had to fill in and track manually",
+        "Each cycle took about 2 weeks company-wide just to consolidate and finalize",
+        "Employees often pushed back, finding the process rigid and disconnected from their actual work"
+      ],
       improvedVersion:
         "Redesigned the company-wide Performance Management Program around structured, role-tailored goal-setting (OKR, BAU, and development goals), then shipped \"Perform Mate,\" an AI Agent that gives real-time guidance and role-based goal templates directly to employees and managers. Reduced manual support needs by 40 percent while improving alignment between individual goals and business priorities.",
       aiPoweredVersion:
@@ -84,7 +95,7 @@ const PORTFOLIO_CONTENT = {
       timeframe: "2022 - 2024, Base Enterprise (FPT Corporation)",
       tags: ["Leadership Development", "Competency Framework"],
       oldVersion:
-        "Leadership development for mid-level managers was largely ad hoc: generic workshops with no shared competency standard, so managers across different teams could be evaluated and developed in inconsistent ways.",
+        "The organization needed a shared, consistent standard for developing mid-level managers. Without one, leadership development stayed ad hoc: generic workshops with no common competency framework, so managers across different teams were evaluated and developed in inconsistent ways.",
       improvedVersion:
         "Custom-built a leadership competency framework, adapted from FPT Corporation's model for Base's context, and launched the \"Hyper Leader\" program on top of it. Achieved a 90 percent completion rate among mid-level managers and key talent across two program batches.",
       aiPoweredVersion:
@@ -97,6 +108,11 @@ const PORTFOLIO_CONTENT = {
       tags: ["Onboarding", "Gamification", "Product Adoption"],
       oldVersion:
         "New hires were largely left to explore a complex portfolio of 50+ internal SaaS products on their own, with documentation scattered across different sources and no structured path, which slowed down time-to-proficiency.",
+      beforeDetails: [
+        "Documentation scattered across shared drives and wiki pages with no single starting point",
+        "New hires typically needed 2+ weeks before feeling confident with the core tools",
+        "Many new hires felt overwhelmed and disengaged during their first weeks on the job"
+      ],
       improvedVersion:
         "Architected a gamified onboarding journey that guided new hires through the full 50+ SaaS product portfolio in a structured, engaging sequence, significantly shortening time-to-proficiency compared to self-directed exploration.",
       aiPoweredVersion:
@@ -108,7 +124,7 @@ const PORTFOLIO_CONTENT = {
       timeframe: "2022 - 2026, Base Enterprise & Amanotes",
       tags: ["AI Adoption", "Knowledge Management", "Change Management"],
       oldVersion:
-        "Knowledge lived in scattered places: three separate digital libraries built and curated manually, and before that, no centralized way for employees to search across the organization's collective knowledge. Finding the right information depended on knowing who to ask or which library to check.",
+        "The organization needed a way to make its collective knowledge instantly searchable and centrally accessible. Without one, knowledge lived in scattered places: three separate digital libraries built and curated manually, and before that, no centralized way to search at all — finding the right information depended on knowing who to ask or which library to check.",
       improvedVersion:
         "Built the knowledge-management foundation first, curating three digital libraries (about 1,000 articles) and launching the gamified \"Innovation Hub\" knowledge-sharing system (3,500+ interactions), then led enterprise-wide change management for adopting Glean, an AI-first knowledge tool, running organizational needs analysis and translating the findings into an actionable AI product roadmap.",
       aiPoweredVersion:
@@ -120,11 +136,9 @@ const PORTFOLIO_CONTENT = {
       timeframe: "04/2026 - Present, Independent EdTech Venture",
       tags: ["AI Product", "EdTech", "Personalized Learning"],
       oldVersion:
-        "Most learning platforms hand people a static course catalog and leave them to figure out, on their own, which path actually gets them to a specific goal.",
+        "People pursuing a specific goal needed a learning path built around that goal. Instead, most platforms just hand them a static course catalog and leave them to figure out, on their own, which courses would actually get them there.",
       improvedVersion:
-        "Founded and led a small team building an AI-powered personal development assistant that generates a personalized learning path toward a specific goal, functioning like an on-demand development coach. Applied hands-on AI-agent-building skills from Claude Code and Claude Academy to prototype the assistant's reasoning and recommendation logic directly, then tested it with about 10 users to validate problem-solution fit and surface the technical refinements needed next.",
-      aiPoweredVersion:
-        "The next iteration is already in progress: using more advanced agent orchestration to make recommendations more accurate, adding real progress tracking so the path adapts as the person actually learns, and expanding the testing group beyond the initial 10 users to stress-test the personalization logic at scale."
+        "Founded and led a small team building an AI-powered personal development assistant that generates a personalized learning path toward a specific goal, functioning like an on-demand development coach. Applied hands-on AI-agent-building skills from Claude Code and Claude Academy to prototype the assistant's reasoning and recommendation logic directly, then tested it with about 10 users to validate problem-solution fit and surface the technical refinements needed next."
     }
   ],
 
@@ -187,6 +201,11 @@ const PORTFOLIO_CONTENT = {
       note: "Expected graduation late 2027"
     }
   ],
+
+  // TODO: paste the real link to an album/folder with photos of the certificates
+  // (e.g. Google Drive, Google Photos). The "View Certificate Images" button
+  // only renders once this is filled in.
+  certificatesAlbumUrl: "https://drive.google.com/drive/folders/1szWbwZkhNRObdZwcdFq-27Eai0TUUCSS?usp=sharing",
 
   certifications: {
     "AI & Emerging Technology": [

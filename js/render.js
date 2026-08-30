@@ -55,7 +55,7 @@ function renderCompetencies(content) {
       <span class="competency-index">${String(content.competencies.length + 1).padStart(2, "0")}</span>
       <div class="competency-text">
         <h4>Tools &amp; Platforms</h4>
-        <p>${content.tools.join(", ")}</p>
+        <p class="tools-line">${content.tools.join(", ")}</p>
       </div>
     </div>`;
 
@@ -67,67 +67,104 @@ function renderCompetencies(content) {
 function versionImageSlot() {
   return `
     <div class="v-image">
-      <span>🖼️</span>
-      <span>Add image</span>
+      <span class="v-image-icon">+</span>
+      <span>add image</span>
+    </div>`;
+}
+
+// Builds the ordered list of version panels for one project. A project skips
+// the "What's Next" version when it has no aiPoweredVersion (e.g. Kieu's own
+// ongoing venture, where there's no separate forward-looking version to tell).
+// A version with beforeDetails shows those bullets instead of an image slot.
+function buildVersions(p) {
+  const versions = [
+    {
+      key: "before",
+      tabLabel: "Before",
+      labelText: "Before",
+      text: p.oldVersion,
+      bullets: p.beforeDetails,
+      showImage: !p.beforeDetails
+    },
+    {
+      key: "built",
+      tabLabel: "What I Built",
+      labelText: "What I Built",
+      text: p.improvedVersion,
+      showImage: true
+    }
+  ];
+
+  if (p.aiPoweredVersion) {
+    versions.push({
+      key: "next",
+      tabLabel: "What's Next",
+      labelText: "What's Next with AI",
+      text: p.aiPoweredVersion,
+      showImage: true
+    });
+  }
+
+  return versions;
+}
+
+function renderVersionPanel(version) {
+  const image = version.showImage ? versionImageSlot() : "";
+  const bullets = version.bullets
+    ? `<ul class="version-bullets">${version.bullets.map((b) => `<li>${b}</li>`).join("")}</ul>`
+    : "";
+  return `
+    <div class="v-panel v-panel--${version.key}">
+      ${image}
+      <span class="case-label case-label-${version.key}">
+        <span class="status-dot" aria-hidden="true"></span>${version.labelText}
+      </span>
+      <p>${version.text}</p>
+      ${bullets}
+    </div>`;
+}
+
+function renderHighlightCard(p) {
+  const versions = buildVersions(p);
+
+  const tabsHtml = versions
+    .map((v, i) => {
+      const arrow = i < versions.length - 1 ? `<span class="v-tab-arrow" aria-hidden="true">&rarr;</span>` : "";
+      return `<button type="button" class="v-tab v-tab--${v.key}" aria-label="Show ${v.tabLabel}"><span class="status-dot" aria-hidden="true"></span>${v.tabLabel}</button>${arrow}`;
+    })
+    .join("");
+
+  const panelsHtml = versions.map(renderVersionPanel).join("");
+  const dotsHtml = versions.map(() => `<span class="v-dot" aria-hidden="true"></span>`).join("");
+
+  return `
+    <div class="card highlight-card">
+      <div class="highlight-header">
+        <h3>${p.name}</h3>
+        <p class="competencies-line">Competencies: ${p.tags.join(", ")}</p>
+      </div>
+
+      <div class="v-tabs">${tabsHtml}</div>
+
+      <div class="v-slider">
+        <div class="v-track">
+          <div class="v-spacer" aria-hidden="true"></div>
+          ${panelsHtml}
+          <div class="v-spacer" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="v-controls">
+        <button type="button" class="v-arrow v-arrow--prev" aria-label="Show previous version">&lsaquo;</button>
+        <div class="v-dots">${dotsHtml}</div>
+        <button type="button" class="v-arrow v-arrow--next" aria-label="Show next version">&rsaquo;</button>
+      </div>
     </div>`;
 }
 
 function renderProjects(content) {
   const list = document.getElementById("projects-list");
-  list.innerHTML = content.projects
-    .map(
-      (p) => `
-        <div class="card highlight-card">
-          <div class="highlight-header">
-            <h3>${p.name}</h3>
-            <p class="case-meta">${p.role} &middot; ${p.timeframe}</p>
-            <div class="tags">
-              ${p.tags.map((t) => `<span class="tag">${t}</span>`).join("")}
-            </div>
-          </div>
-
-          <div class="v-tabs">
-            <button type="button" class="v-tab v-tab--before" aria-label="Show Before">Before</button>
-            <span class="v-tab-arrow" aria-hidden="true">&rarr;</span>
-            <button type="button" class="v-tab v-tab--built" aria-label="Show What I Built">What I Built</button>
-            <span class="v-tab-arrow" aria-hidden="true">&rarr;</span>
-            <button type="button" class="v-tab v-tab--next" aria-label="Show What's Next with AI">What's Next</button>
-          </div>
-
-          <div class="v-slider">
-            <div class="v-track">
-              <div class="v-spacer" aria-hidden="true"></div>
-              <div class="v-panel v-panel--before">
-                ${versionImageSlot()}
-                <span class="case-label case-label-before">Before</span>
-                <p>${p.oldVersion}</p>
-              </div>
-              <div class="v-panel v-panel--built">
-                ${versionImageSlot()}
-                <span class="case-label case-label-built">What I Built</span>
-                <p>${p.improvedVersion}</p>
-              </div>
-              <div class="v-panel v-panel--next">
-                ${versionImageSlot()}
-                <span class="case-label case-label-next">What's Next with AI</span>
-                <p>${p.aiPoweredVersion}</p>
-              </div>
-              <div class="v-spacer" aria-hidden="true"></div>
-            </div>
-          </div>
-
-          <div class="v-controls">
-            <button type="button" class="v-arrow v-arrow--prev" aria-label="Show previous version">&lsaquo;</button>
-            <div class="v-dots">
-              <span class="v-dot" aria-hidden="true"></span>
-              <span class="v-dot" aria-hidden="true"></span>
-              <span class="v-dot" aria-hidden="true"></span>
-            </div>
-            <button type="button" class="v-arrow v-arrow--next" aria-label="Show next version">&rsaquo;</button>
-          </div>
-        </div>`
-    )
-    .join("");
+  list.innerHTML = content.projects.map(renderHighlightCard).join("");
 
   initHighlightSliders();
 }
@@ -182,10 +219,19 @@ function initHighlightSliders() {
       return closest;
     };
 
-    const scrollToIndex = (index) => {
+    // Centers a panel by setting the slider's own scrollLeft directly, rather
+    // than scrollIntoView — which can bubble up and scroll the whole page
+    // vertically (e.g. on a resize event) since it isn't scoped to one axis.
+    const centerPanel = (index, smooth) => {
       const clamped = Math.max(0, Math.min(panels.length - 1, index));
-      panels[clamped].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      const panel = panels[clamped];
+      const sliderRect = slider.getBoundingClientRect();
+      const panelRect = panel.getBoundingClientRect();
+      const delta = panelRect.left + panelRect.width / 2 - (sliderRect.left + sliderRect.width / 2);
+      slider.scrollTo({ left: slider.scrollLeft + delta, behavior: smooth ? "smooth" : "auto" });
     };
+
+    const scrollToIndex = (index) => centerPanel(index, true);
 
     const updateActiveState = () => {
       const active = getActiveIndex();
@@ -240,7 +286,7 @@ function initHighlightSliders() {
       resizeTimeout = setTimeout(() => {
         const active = getActiveIndex();
         sizePanels(slider, panels, spacers);
-        panels[active].scrollIntoView({ behavior: "auto", inline: "center", block: "nearest" });
+        centerPanel(active, false);
         updateActiveState();
       }, 150);
     });
@@ -291,6 +337,15 @@ function renderEducation(content) {
         </div>`
     )
     .join("");
+
+  // Only show the button once a real album/folder URL is set in content.js.
+  const certLinkBtn = document.getElementById("cert-link-btn");
+  if (content.certificatesAlbumUrl) {
+    certLinkBtn.href = content.certificatesAlbumUrl;
+    certLinkBtn.style.display = "";
+  } else {
+    certLinkBtn.style.display = "none";
+  }
 }
 
 function renderAwards(content) {
